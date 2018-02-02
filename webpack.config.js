@@ -32,7 +32,7 @@ module.exports = {
     plugins,
 
     // Load this and everythning it cares about
-    entry: `${__dirname}/src/index.js`,
+    entry: `${__dirname}/src/main.js`,
 
     devServer: {
         historyApiFallback:true
@@ -44,12 +44,7 @@ module.exports = {
     output: {
         filename: 'bundle.[hash].js',
         path: `${__dirname}/build`,
-        publicPath: process.env.CDN_URL
-    },
-
-    node: {
-        fs: 'empty', 
-        net: 'empty'
+        publicPath: process.env.CDN_URL        
     },
 
     module: {
