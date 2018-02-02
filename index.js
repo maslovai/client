@@ -1,9 +1,9 @@
 let express = require('express');
-let morgan = require('morgan');
+// let morgan = require('morgan');
 
 let app = express();
 
-app.use(morgan('common'));
+// app.use(morgan('common'));
 
 app.use(express.static(`${__dirname}/build`));
 app.use('*', (req, res) => res.sendFile(`${__dirname}/build/index.html`));
