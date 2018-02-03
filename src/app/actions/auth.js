@@ -11,7 +11,7 @@ import cookie from 'react-cookies';
 export const validate = () => (dispatch) => {
   let token = cookie.load('X-BBB-Token');
     if(token){
-      superagent.get(`${__API_URL__}/user`)
+      let checkToken = superagent.get(`${__API_URL__}/user`)
       .set('Authorization', `Bearer ${token}`)
       .then(response => {
           dispatch(loginAction(response.body));
