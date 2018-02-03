@@ -14,10 +14,6 @@ class TasksQueue extends React.Component {
         this.state = {tasks:this.props.tasks||[]}
     }
     
-    // componentWillReceiveProps(taskArray) {
-    //     if(taskArray) { this.setState(taskArray.tasks) }
-    //   }
-
     render() {
         return (
             <div>
@@ -35,7 +31,7 @@ class TasksQueue extends React.Component {
                             this.props.tasks.map((task, i)=> 
                                 <li key = {i}>
                                     <TaskForm
-                                        task = {task.taskName}
+                                        task = {task.task}
                                     />
                                 </li>
                             )

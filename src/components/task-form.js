@@ -9,7 +9,7 @@ class TaskForm extends React.Component{
  constructor(props) {
    super(props);
    this.state = {
-     taskName : this.props.task || ''
+     task : this.props.task || ''
    }
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,7 @@ class TaskForm extends React.Component{
    e.preventDefault();
    this.props.handleCreate(this.state);
    console.log("in noteform, state:",this.state);
-   this.setState({taskName:''});
+   this.setState({task:''});
  };
  
  render(){
@@ -36,9 +36,9 @@ class TaskForm extends React.Component{
          <input         
            className={this.props.task ? "listInput" : "newInput"}
            type='text'
-           name='taskName'
+           name='task'
            placeholder='take out the smelly compost'
-           value={this.state.taskName}
+           value={this.state.task}
            onChange={this.handleChange}
          />
           {

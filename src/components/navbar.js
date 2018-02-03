@@ -14,9 +14,9 @@ class Navbar extends React.Component {
             <nav>
                 {renderIf(this.props.auth,
                     <ul>
-                    <li onClick={() => this.props.switchRoute('/tasksQueue') }> Tasks Queue</li>
+                    <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li>
                     <li onClick={ () => this.props.switchRoute('/profile') }>Profile</li>
-                    {/* <li onClick={this.props.logout}>Logout</li> */}
+                    <li onClick={this.props.logout}>Logout</li>
                     </ul>
                 )}
             </nav>

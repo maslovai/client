@@ -1,6 +1,5 @@
 const initState = [];
 export const taskCreate = (task)=>{
-    task.createDate = new Date();
     return {
         type:"ADD_TASK",
         payload:task

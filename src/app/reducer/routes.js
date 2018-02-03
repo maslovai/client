@@ -14,7 +14,7 @@ export default (state=defaultRoute, {type, payload}) => {
           return '/login';
         
         case "LOGIN" :
-          return '/queue';   
+          return '/groups';   
 
         default: 
           return state;   
