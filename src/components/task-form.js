@@ -5,19 +5,12 @@ const renderIf = (test, component, alternative) => {
   return test ? component : alternative
 }
 
-// let initialState = {
-//  taskName:  '',
-//  //dueDate: ,
-//  //reoccurance: ,
-// }
-
 class TaskForm extends React.Component{
  constructor(props) {
    super(props);
    this.state = {
      taskName : this.props.task || ''
    }
-   console.log('in note-form', this.props.task)
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
  }
@@ -40,8 +33,8 @@ class TaskForm extends React.Component{
        <form
          onSubmit={this.handleSubmit}>
  
-         <input
-           className='type-input'
+         <input         
+           className={this.props.task ? "listInput" : "newInput"}
            type='text'
            name='taskName'
            placeholder='take out the smelly compost'

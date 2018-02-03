@@ -20,31 +20,29 @@ class TasksQueue extends React.Component {
 
     render() {
         return (
-            <div>{
-                renderIf(this.props.tasks.length, 
-                    <div className = 'taskQueue'>
-                        <h2>Here are your tasks:</h2>
-                        <ul className = "taskQueue">
-                            {
-                                this.props.tasks.map((task, i)=> 
-                                    <li key = {i}>
-                                        <TaskForm
-                                            task = {task.taskName}
-                                        />
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>,
-                    <div>
-                        <p>No tasks yet, create one.</p>
-                        <TaskForm handleCreate= {this.props.taskCreate} 
-                                  handleDel={this.props.taskDelete}
-                                  handleUpdate={this.props.taskUpdate}
-                        />
-                    </div>
-                )
-            }
+            <div>
+                <div>
+                    <h2>Create a task:</h2>
+                    <TaskForm handleCreate= {this.props.taskCreate} 
+                                handleDel={this.props.taskDelete}
+                                handleUpdate={this.props.taskUpdate}
+                    />
+                </div>
+                <div className = 'taskQueue'>
+                    <h2>Here are your tasks:</h2>
+                    <ul className = "taskQueue">
+                        {
+                            this.props.tasks.map((task, i)=> 
+                                <li key = {i}>
+                                    <TaskForm
+                                        task = {task.taskName}
+                                    />
+                                </li>
+                            )
+                        }
+                    </ul>
+                </div>
+                
             </div>    
         )
     }
