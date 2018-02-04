@@ -1,22 +1,22 @@
-const initState = [];
+// const initState = [];
 import superagent from'superagent';
 let API = `${__API_URL__}`;
 
-export const taskInitialize = () => dispatch => {
-     console.log('in tasks init::::');
+export const tasksInitialize = () => dispatch => {
+     console.log('in tasks init::::',`${API}/task/get`);
     superagent
-        .get(`${API}/task`)
+        .get(`${API}/task/get`)
         .then(res => {
-            console.log('in task init:::::', res)
-            let arr = res.body;
-            dispatch(initAction(arr));    
+            // console.log('in task init:::::', res.body)
+            dispatch(initAction(res.body));    
         })
         .catch(console.error);
 }
 
-export const taskCreate = payload => dispatch=>{
+export const taskCreate = payload => dispatch => {
+    console.log("in actions post note::::", payload.name)
     superagent
-    .post(`${API}/task`)
+    .post(`${API}/task/post`)
     .send({"name" : payload.name})
     .then(res => {
         console.log('after post:::::', res.body)
@@ -38,12 +38,12 @@ export const taskUpdate = payload => dispatch => {
 
 const createAction = task =>{
     return {
-        type:"ADD_TASK",
+        type: "CREATE_TASK",
         payload:task
     }
 }
 
-export const updateAction = task => {
+const updateAction = task => {
     return {
         type: "UPDATE_TASK",
         payload: task

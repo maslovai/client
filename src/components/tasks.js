@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
 import TaskForm from './task-form';
 
-const renderIf = (test, component, alternative) => {
-    return test ? component : alternative
-}
+// const renderIf = (test, component, alternative) => {
+//     return test ? component : alternative
+// }
 
 class TasksQueue extends React.Component {
 
@@ -13,7 +13,9 @@ class TasksQueue extends React.Component {
         super(props);
         this.state = {tasks:this.props.tasks||[]}
     }
-    
+    componentWillMount(){
+        this.props.tasksInitialize();
+    }
     render() {
         return (
             <div>
@@ -31,7 +33,7 @@ class TasksQueue extends React.Component {
                             this.props.tasks.map((task, i)=> 
                                 <li key = {i}>
                                     <TaskForm
-                                        task = {task.task}
+                                        name = {task.name}
                                     />
                                 </li>
                             )
@@ -44,13 +46,14 @@ class TasksQueue extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    tasks:state.tasks
+    tasks : state.tasks
 })
 
 const mapDispatchToProps = (dispatch, getState)=>({
     taskCreate: task => dispatch(tasksActions.taskCreate(task)),
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
-    taskDelete: task => dispatch(tasksActions.taskDelete(task))
+    taskDelete: task => dispatch(tasksActions.taskDelete(task)), 
+    tasksInitialize: ()=> dispatch(tasksActions.tasksInitialize())
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(TasksQueue);

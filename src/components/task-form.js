@@ -9,7 +9,7 @@ class TaskForm extends React.Component{
  constructor(props) {
    super(props);
    this.state = {
-     task : this.props.task || ''
+     name: this.props.name || ''
    }
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
@@ -24,31 +24,30 @@ class TaskForm extends React.Component{
    e.preventDefault();
    this.props.handleCreate(this.state);
    console.log("in noteform, state:",this.state);
-   this.setState({task:''});
+   this.setState({name:''});
  };
  
  render(){
    return(
-     <div className='task-form'>
+     <div className='task-form-div'>
        <form
          onSubmit={this.handleSubmit}>
  
          <input         
-           className={this.props.task ? "listInput" : "newInput"}
+           className={this.props.name ? "listInput" : "newInput"}
            type='text'
-           name='task'
+           name='name'
            placeholder='take out the smelly compost'
-           value={this.state.task}
+           value={this.state.name}
            onChange={this.handleChange}
          />
           {
-            renderIf(!this.props.task,
+            renderIf(!this.props.name,
               <button type='submit'> Save Task </button>,
               null
             )
           }
         
-       
        </form>
      </div>
    )
