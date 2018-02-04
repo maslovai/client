@@ -4,12 +4,16 @@ export default (state=false, action) => {
   
   switch(type) {
       case "LOGIN":
-          return true;
+        return true;
           
       case "LOGOUT":
-          return false;
+        return false;
+
+      case "SAVE_USER":
+      console.log('user payload is ', payload)
+        return [...state, payload];
           
       default:
-          return state;
+        return state;
   }
 }
