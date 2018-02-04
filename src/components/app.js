@@ -10,6 +10,8 @@ import Navbar from './navbar'
 import Chat from './chat'
 import Login from './login'
 import Profile from './profile'
+import User from './user'
+
 
 import * as authActions from '../app/actions/auth';
 import * as routeActions from '../app/actions/routes';
@@ -23,6 +25,8 @@ class App extends React.Component {
     componentWillMount() {
         // TODO: this is a good time to validate the user
       this.props.validate();
+      console.log(this.state);
+      console.log('auth ', this.props.auth)
     }
 
     render() {
@@ -39,6 +43,8 @@ class App extends React.Component {
                       <Route exact path='/login' component={Login}/>
                       <Route exact path='/profile' component={Profile}/>
                       <Route exact path='/chat' component={Chat}/>
+                      <Route exact path='/groups' component={User}/>
+
                   </Switch>
                 </main>
 
