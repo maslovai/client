@@ -7,11 +7,10 @@ import {connect} from 'react-redux'
 import Header from './header'
 import Footer from './footer'
 import Navbar from './navbar'
-import Chat from './chat'
 import Login from './login'
 import Profile from './profile'
 import User from './user'
-
+import TasksQueue from './tasks'
 
 import * as authActions from '../app/actions/auth';
 import * as routeActions from '../app/actions/routes';
@@ -33,23 +32,22 @@ class App extends React.Component {
         return (
             <React.Fragment>
 
-                <Header appTitle="Chat App" />
+                <Header appTitle="Task-Off!" />
 
                 { /* TODO: Probably should send the routing actions and the route state so you can show/hide links in the menu */ }
                 <Navbar auth={this.props.auth} switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
 
                 <main>
                   <Switch location={{pathname:this.props.route}}>
+                      <Route exact path='/queue' component={TasksQueue}/>
                       <Route exact path='/login' component={Login}/>
                       <Route exact path='/profile' component={Profile}/>
-                      <Route exact path='/chat' component={Chat}/>
                       <Route exact path='/groups' component={User}/>
-
                   </Switch>
                 </main>
 
                 <Footer>
-                    <p>&copy;2017 401n4</p>
+                    <p>&copy;2018 401n4</p>
                 </Footer>
 
             </React.Fragment>
