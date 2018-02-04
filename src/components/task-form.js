@@ -1,17 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-let emptyState = {
- taskName: '',
- //dueDate: ,
- //reoccurance: ,
+const renderIf = (test, component, alternative) => {
+  return test ? component : alternative
 }
 
 class TaskForm extends React.Component{
  constructor(props) {
    super(props);
-   
-   this.state = emptyState;
+   this.state = {
+     task : this.props.task || ''
+   }
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
  }
@@ -23,8 +22,9 @@ class TaskForm extends React.Component{
 
  handleSubmit(e){
    e.preventDefault();
-   //this.props.handleSomething(this.state);
-   this.setState(emptyState);
+   this.props.handleCreate(this.state);
+   console.log("in noteform, state:",this.state);
+   this.setState({task:''});
  };
  
  render(){
@@ -33,16 +33,21 @@ class TaskForm extends React.Component{
        <form
          onSubmit={this.handleSubmit}>
  
-         <input
-           className='type-input'
+         <input         
+           className={this.props.task ? "listInput" : "newInput"}
            type='text'
-           name='name'
+           name='task'
            placeholder='take out the smelly compost'
-           value={this.state.name}
+           value={this.state.task}
            onChange={this.handleChange}
          />
- 
-         <button type='submit'> {button} </button>
+          {
+            renderIf(!this.props.task,
+              <button type='submit'> Save Task </button>,
+              null
+            )
+          }
+        
        
        </form>
      </div>

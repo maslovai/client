@@ -9,6 +9,7 @@ import Footer from './footer'
 import Navbar from './navbar'
 import Login from './login'
 import Profile from './profile'
+import TasksQueue from './tasks'
 
 import * as authActions from '../app/actions/auth';
 import * as routeActions from '../app/actions/routes';
@@ -35,6 +36,7 @@ class App extends React.Component {
 
                 <main>
                   <Switch location={{pathname:this.props.route}}>
+                      <Route exact path='/queue' component={TasksQueue}/>
                       <Route exact path='/login' component={Login}/>
                       <Route exact path='/profile' component={Profile}/>
                   </Switch>
