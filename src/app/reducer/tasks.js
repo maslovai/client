@@ -1,19 +1,33 @@
-const initialState = [];
-
+let initialState = [];
 
 export default (state=initialState, action) => {
 
-    let {type, payload} = action;
-    switch(type){
+  let {type, payload} = action;
 
-        case 'ADD_TASK':
-            return [... state, payload];
-        // should the following have the _id?    
-        // case 'DELETE_TASK':
-        //     return state.filter((task) => task.id!==payload.id);
-        // case 'UPDATE_CATEGORY':
-        //     return state.map((task,i) => task.id===payload.id ? payload : task);
-        default: return state;
-    }
+  switch(type) {
 
-}
+    case 'INIT':
+        console.log("INIT");
+        return payload || initialState;
+
+    case 'CREATE_TASK':
+        return [...state, payload];
+
+    case 'UPDATE_TASK':
+        return state.map(task => task._id === payload._id ? payload : task);
+
+    case 'DELETE_TASK':
+        return state.filter(task =>{
+            console.log('type', typeof task._id)
+            console.log('in reducer delete:::', task, payload)
+            return task._id !== payload._id
+        }) 
+
+    case 'RESET':
+        return initialState;
+
+    default:
+        return state;
+  }
+
+};

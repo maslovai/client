@@ -14,6 +14,7 @@ import TasksQueue from './tasks'
 
 import * as authActions from '../app/actions/auth';
 import * as routeActions from '../app/actions/routes';
+import * as taskActions from '../app/actions/tasks'
 
 class App extends React.Component {
 
@@ -27,7 +28,7 @@ class App extends React.Component {
       console.log(this.state);
       console.log('auth ', this.props.auth)
     }
-
+   
     render() {
         return (
             <React.Fragment>
@@ -59,13 +60,13 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
     auth: state.auth,
     profile: state.profile,
-    route: state.route
+    route: state.route, 
 });
     
 const mapDispatchToProps = (dispatch, getState) => ({
     validate: () => dispatch(authActions.validate()),
     switchRoute: (route) => dispatch(routeActions.switchRoute(route)),
-    logout: () => dispatch(authActions.logout()),
+    logout: () => dispatch(authActions.logout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
