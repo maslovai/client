@@ -9,6 +9,7 @@ import Footer from './footer'
 import Navbar from './navbar'
 import Login from './login'
 import Profile from './profile'
+import User from './user'
 import TasksQueue from './tasks'
 
 import * as authActions from '../app/actions/auth';
@@ -23,6 +24,8 @@ class App extends React.Component {
     componentWillMount() {
         // TODO: this is a good time to validate the user
       this.props.validate();
+      console.log(this.state);
+      console.log('auth ', this.props.auth)
     }
 
     render() {
@@ -39,6 +42,7 @@ class App extends React.Component {
                       <Route exact path='/queue' component={TasksQueue}/>
                       <Route exact path='/login' component={Login}/>
                       <Route exact path='/profile' component={Profile}/>
+                      <Route exact path='/groups' component={User}/>
                   </Switch>
                 </main>
 

@@ -8,7 +8,9 @@ export const validate = () => (dispatch) => {
       .set('Authorization', `Bearer ${token}`)
       .then(response => {
           dispatch(loginAction(response.body));
-      })
+          //dispatch(saveUser(response)) 
+          
+      })           
       .catch(console.error);
     };
 }
@@ -29,4 +31,9 @@ const loginAction = (user) => ({
 
 const logoutAction = (user) => ({
   type: "LOGOUT"
+})
+
+const saveUser = (user) => ({
+  type: "SAVE_USER",
+  payload: user
 })
