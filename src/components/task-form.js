@@ -8,8 +8,10 @@ const renderIf = (test, component, alternative) => {
 class TaskForm extends React.Component{
  constructor(props) {
    super(props);
+   console.log(this.props.current)
    this.state = {
-     name: this.props.name || ''
+     name: this.props.current|| '',
+     _id:this.props._id || ''
    }
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
@@ -23,11 +25,9 @@ class TaskForm extends React.Component{
  handleSubmit(e){
    e.preventDefault();
   //  console.log('state in submit form', this.state);
-   if (!this.props.name) {
-     this.props.handleCreate(this.state);
-     this.setState({name:''});
-   } 
-    else this.props.handleUpdate(this.state)  
+     this.props.handle(this.state);
+     if (!this.props.current) this.setState({name:''});
+    
  };
  
  render(){
@@ -36,7 +36,7 @@ class TaskForm extends React.Component{
        <form
          onSubmit={this.handleSubmit}>
          <input         
-           className={this.props.name ? "listInput" : "newInput"}
+           className={this.props.current ? "listInput" : "newInput"}
            type='text'
            name='name'
            placeholder='What needs to be done?'
@@ -44,7 +44,7 @@ class TaskForm extends React.Component{
            onChange={this.handleChange}
          />
          {
-           renderIf(!this.props.name,
+           renderIf(!this.props.current,
             <button type='submit'> {this.props.button} </button>,
             null  )
          }

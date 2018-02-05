@@ -5,6 +5,7 @@
     justify-content: space-around;
     form{
         .listInput{
+            font-size:1.2em;
             background: $baseLight;
             border: none;
             width: 30em;
@@ -14,10 +15,9 @@
             margin:1em;
             padding:0.5em; 
             width:30em; 
-            
         }
         button{
-            border-style:solid;
+            box-shadow: 0 3px 2px #777;
         }  
     }
 }
