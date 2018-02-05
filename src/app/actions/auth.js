@@ -7,9 +7,8 @@ export const validate = () => (dispatch) => {
       superagent.get(`${__API_URL__}/user`)
       .set('Authorization', `Bearer ${token}`)
       .then(response => {
-          dispatch(loginAction(response.body));
-          //dispatch(saveUser(response)) 
-          
+        console.log('response in boogaloog is ', response)
+          dispatch(loginAction(response.body));          
       })           
       .catch(console.error);
     };

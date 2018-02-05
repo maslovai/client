@@ -1,0 +1,19 @@
+a.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+a {
+  text-decoration: none;
+}
+
+a#google:after {
+
+  font-family: FontAwesome;  
+  content: "\f0d4";
+  color: orange;
+  font-size: large;
+  padding-left: 1em;
+  
+}

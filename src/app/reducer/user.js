@@ -8,8 +8,8 @@ export default (state={}, {type, payload}) => {
       case 'LOGOUT':
           return {};
 
-      // case 'UPDATE_PROFILE':
-      //     return Object.assign({}, state, payload)
+      case 'UPDATE_PROFILE':
+          return Object.assign({}, state, payload)
 
       default:
       return state;
