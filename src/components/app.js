@@ -8,8 +8,7 @@ import Header from './header'
 import Footer from './footer'
 import Navbar from './navbar'
 import Login from './login'
-import Profile from './profile'
-import User from './user'
+import Groups from './groups'
 import TasksQueue from './tasks'
 
 import * as authActions from '../app/actions/auth';
@@ -23,7 +22,6 @@ class App extends React.Component {
     }
     
     componentWillMount() {
-        // TODO: this is a good time to validate the user
       this.props.validate();
       console.log(this.state);
       console.log('auth ', this.props.auth)
@@ -33,22 +31,19 @@ class App extends React.Component {
         return (
             <React.Fragment>
 
-                <Header appTitle="Task-Off!" />
-
-                { /* TODO: Probably should send the routing actions and the route state so you can show/hide links in the menu */ }
+                <Header appTitle="Task-Off" />
                 <Navbar auth={this.props.auth} switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
 
                 <main>
                   <Switch location={{pathname:this.props.route}}>
                       <Route exact path='/queue' component={TasksQueue}/>
                       <Route exact path='/login' component={Login}/>
-                      <Route exact path='/profile' component={Profile}/>
-                      <Route exact path='/groups' component={User}/>
+                      <Route exact path='/groups' component={Groups}/>
                   </Switch>
                 </main>
 
                 <Footer>
-                    <p>&copy;2018 401n4</p>
+                    <p>&copy;2018 The Awesome People</p>
                 </Footer>
 
             </React.Fragment>

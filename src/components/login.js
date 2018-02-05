@@ -23,9 +23,9 @@ class Login extends React.Component {
       let loginURL = `${oauthURL}?${QueryString}`;
 
       return (
-        <React.Fragment>
-          <a href={loginURL}>Login With Google</a>
-        </React.Fragment>
+        <div className='login'>
+          <a id='google' href={loginURL}>Login With Google</a>
+        </div>
       )
     }
   }

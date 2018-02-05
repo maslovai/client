@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 const renderIf = (test, component, alternative) => {
   return test ? component : alternative
