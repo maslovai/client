@@ -11,7 +11,7 @@ class TasksQueue extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {tasks:this.props.tasks||[]}
+        this.state = {tasks: this.props.tasks || [] }
     }
     componentWillMount(){
         this.props.tasksInitialize();
