@@ -10,12 +10,22 @@
             border: none;
             width: 30em;
         }
-        
+        #completedTask{
+            text-decoration:line-through;
+        }
+        #incompleteTask{
+            text-decoration: none;
+        }
+        #checkBox{
+            width: 1.5em;
+            height: 1.5em;
+        }
         .newInput{
             margin:1em;
             padding:0.5em; 
             width:30em; 
         }
+       
         button{
             box-shadow: 0 3px 2px #777;
         }  

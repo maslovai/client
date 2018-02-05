@@ -26,15 +26,16 @@ class TasksQueue extends React.Component {
                     />
                 </div>
                 <div className = 'taskQueue'>
-                    <h2>Here are your group's tasks:</h2>
+                    <h2>Group's tasks. Click on task and write your name to claim</h2>
                     <ul className = "taskQueue">
                         {
                             this.props.tasks.map((task, i)=> 
                                 <li key = {i} >
                                     <span onClick={()=>this.props.taskDelete(task)}>x</span>
                                     <TaskForm handle = {this.props.taskUpdate}
-                                        current={task.name}
+                                        name={task.name}
                                         _id={task._id}
+                                        completed = {task.completed}
                                     />
                                 </li>
                             )

@@ -8,13 +8,16 @@ const renderIf = (test, component, alternative) => {
 class TaskForm extends React.Component{
  constructor(props) {
    super(props);
-   console.log(this.props.current)
+  //  console.log(this.props.completed)
    this.state = {
-     name: this.props.current|| '',
-     _id:this.props._id || ''
+     name: this.props.name|| '',
+     _id:this.props._id || '',
+     completed:this.props.completed || 'false'
    }
+
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
+   this.handleOnChange = this.handleOnChange.bind(this);
  }
 
  handleChange(e){
@@ -24,19 +27,24 @@ class TaskForm extends React.Component{
 
  handleSubmit(e){
    e.preventDefault();
-  //  console.log('state in submit form', this.state);
      this.props.handle(this.state);
-     if (!this.props.current) this.setState({name:''});
-    
- };
+     if (!this.props.name) this.setState({name:''})
+ }
+
+ handleOnChange(e){
+  this.setState({completed: e.target.checked});
+  this.props.handle(this.state);
+  console.log(this.state);
+ }
  
  render(){
    return(
      <div className='task-form-div'>
        <form
          onSubmit={this.handleSubmit}>
-         <input         
-           className={this.props.current ? "listInput" : "newInput"}
+         <input    
+           className={this.props.name ? "listInput" : "newInput"}
+           id={this.props.completed ? "completedTask" : "incompeteTask"}
            type='text'
            name='name'
            placeholder='What needs to be done?'
@@ -44,11 +52,15 @@ class TaskForm extends React.Component{
            onChange={this.handleChange}
          />
          {
-           renderIf(!this.props.current,
+           renderIf(!this.props.name,
             <button type='submit'> {this.props.button} </button>,
-            null  )
+            <input id="checkBox" 
+                   type="checkbox" 
+                   checked={this.props.completed} 
+                   onChange= {this.handleOnChange}   
+            />
+           )
          }
-        
        </form>
      </div>
    )

@@ -14,7 +14,7 @@ export const tasksInitialize = () => dispatch => {
 }
 
 export const taskCreate = payload => dispatch => {
-    // console.log("in actions - post note::::", payload)
+    console.log("in actions - post note::::", payload)
     superagent
     .post(`${API}/task`)
     .send({"name" : payload.name})
