@@ -20,7 +20,7 @@ class TasksQueue extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = 'queueView'>
                 <div className='inputDiv'>
                     <h2>Create a task:</h2>
                     <TaskForm handle = {this.props.taskCreate} 

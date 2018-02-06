@@ -4,22 +4,30 @@ main{
         padding:1em;
 
     }
-    div {
+    .queueView {
         display:flex;
         flex-direction:column;
         align-items: center;
         justify-content: space-around;
-        ul{
-            margin-top: 1em;
-            li{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                line-height: 2.5em;
-                div{
-                    margin-left:1em;   
+        
+        .inputDiv{
+            display: flex;
+            flex-direction: column;
+        }
+        .taskQueue{
+            ul{
+                margin-top: 1em;
+                li{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    line-height: 2.5em;
+                    div{
+                        margin-left:1em;   
+                    }
                 }
             }
         }
+        
     }
 }
