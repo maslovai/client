@@ -23,7 +23,7 @@ export const joinGroup = (id, alias) => (dispatch) => {
   let token = cookie.load('X-BBB-Token');
   
   if (token) { 
-      
+
     superagent.put( `${__API_URL__}/user/${alias}`)
       .set('Authorization', `Bearer ${token}`)
       .send({id: id})

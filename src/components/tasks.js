@@ -26,7 +26,7 @@ class TasksQueue extends React.Component {
 
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
-                                task={{}}
+                                groupID = "1"
                     />
                 </div>
                 <div className = 'taskQueue'>
@@ -38,7 +38,10 @@ class TasksQueue extends React.Component {
                                 <li key = {i} >
                                     <span onClick={()=>this.props.taskDelete(task)}>x</span>
                                     <TaskForm handle = {this.props.taskUpdate} 
-                                        task={{name:task.name, completed:task.completed,_id:task._id}}
+                                        name={task.name}
+                                        completed={task.completed}
+                                        _id={task._id}
+                                        groupID="1"
                                     />
                                 </li>
                             )
