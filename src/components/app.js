@@ -37,9 +37,9 @@ class App extends React.Component {
 
                 <main>
                   <Switch location={{pathname:this.props.route}}>
-                      <Route exact path='/queue' component={TasksQueue}/>
+                      <Route path='/queue' component={TasksQueue}/>
                       <Route exact path='/login' component={Login}/>
-                      <Route exact path='/groups' component={Groups}/>
+                      <Route exact path='/groups' component={() => <Groups switchRoute={this.props.switchRoute}/>}/>
                   </Switch>
                 </main>
 

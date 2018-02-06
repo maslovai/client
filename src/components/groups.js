@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as groupActions from '../app/actions/groups';
 import GroupForm from './group-form';
 import {renderIf} from '../lib/__';
+import {Link} from 'react-router-dom';
 
 class Groups extends React.Component {
 
@@ -44,17 +45,20 @@ class Groups extends React.Component {
 
   render() {
 
-    const groups = this.props.user.groupNames;
+    const user = this.props.user;
 
     return (
       <div className='groups'>
 
-      {renderIf(groups.length, 
+      {renderIf(user.groupNames.length, 
         <div id="groupList">
         <p className='groupHeader'>My Groups</p>
         {
-          groups.map((group, i) =>
-            <li className='groupli' key={i}>{group}</li>,
+          user.groupNames.map((groupName, i) =>
+          <li className='groupli' 
+          key={i} 
+          onClick={() => this.props.switchRoute(`/queue/${user.group_IDs[i]}`) }>{groupName}
+          </li>   
         )}
         </div>
       )} 

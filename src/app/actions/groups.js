@@ -24,7 +24,7 @@ export const joinGroup = (id, alias) => (dispatch) => {
   
   if (token) { 
       
-    superagent.put( `${__API_URL__}/user/alias`)
+    superagent.put( `${__API_URL__}/user/${alias}`)
       .set('Authorization', `Bearer ${token}`)
       .send({id: id})
       .then(res => {
