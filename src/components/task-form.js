@@ -20,9 +20,9 @@ class TaskForm extends React.Component{
    this.handleOnChange = this.handleOnChange.bind(this);
  }
 
- componentWillReceiveProps(props, nextState){
-   console.log('PROPS IN WILL RECEIVE', props, nextState)
-   // this.setState(nextState)
+ componentWillReceiveProps(props){
+   console.log('PROPS IN WILL RECEIVE', props)
+   this.setState(props)
  }
 
  handleChange(e){
