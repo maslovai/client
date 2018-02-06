@@ -17,7 +17,7 @@ export const taskCreate = payload => dispatch => {
     console.log("in actions - post note::::", payload)
     superagent
     .post(`${API}/task`)
-    .send({"name" : payload.name})
+    .send({"name" : payload.name, "group_ID" : payload.groupID})
     .then(res => {
         // console.log('after post:::::', res.body)
         dispatch(createAction(res.body))
@@ -29,7 +29,7 @@ export const taskCreate = payload => dispatch => {
 export const taskUpdate = payload => dispatch => {
     console.log("in actions update, payload", payload)
     superagent
-    .put(`${API}/task/${payload._id}`)
+    .put(`${API}/task/${payload.task_id}`)
     .send(payload)
     .then((res)=>{
         console.log('after update returns from backend::::::::', res.body)
