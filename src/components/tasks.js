@@ -16,6 +16,8 @@ class TasksQueue extends React.Component {
     componentWillMount(){
         this.props.tasksInitialize();
     }
+
+
     render() {
         return (
             <div>
@@ -23,6 +25,7 @@ class TasksQueue extends React.Component {
                     <h2>Create a task:</h2>
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
+                                task={{}}
                     />
                 </div>
                 <div className = 'taskQueue'>
@@ -32,10 +35,8 @@ class TasksQueue extends React.Component {
                             this.props.tasks.map((task, i)=> 
                                 <li key = {i} >
                                     <span onClick={()=>this.props.taskDelete(task)}>x</span>
-                                    <TaskForm handle = {this.props.taskUpdate}
-                                        name={task.name}
-                                        _id={task._id}
-                                        completed = {task.completed}
+                                    <TaskForm handle = {this.props.taskUpdate} 
+                                        task={{name:task.name, completed:task.completed,_id:task._id}}
                                     />
                                 </li>
                             )
