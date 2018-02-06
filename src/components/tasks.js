@@ -26,7 +26,7 @@ class TasksQueue extends React.Component {
 
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
-                                groupID = "1"
+                                groupID={groupID}
                     />
                 </div>
                 <div className = 'taskQueue'>
@@ -41,7 +41,8 @@ class TasksQueue extends React.Component {
                                         name={task.name}
                                         completed={task.completed}
                                         _id={task._id}
-                                        groupID="1"
+                                        groupID={groupID}
+                                        userID = {this.props.user._id}
                                     />
                                 </li>
                             )
@@ -54,7 +55,8 @@ class TasksQueue extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    tasks : state.tasks
+    tasks : state.tasks,
+    user:state.user
 })
 
 const mapDispatchToProps = (dispatch, getState)=>({

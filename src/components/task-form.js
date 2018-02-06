@@ -10,8 +10,9 @@ class TaskForm extends React.Component{
    this.state = {
      name:this.props.name || '',
      completed:this.props.completed || false,
-     groupID: this.props.groupID || '1',
-     task_id:this.props._id || '' 
+     groupID:this.props.groupID || '1',
+     taskID:this.props._id || '',
+     competedBy:this.props.userID || ''
    }
 
    this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +21,7 @@ class TaskForm extends React.Component{
  }
 
  componentWillReceiveProps(props){
-   console.log('PROPS IN WILL RECEIVE', props)
+  //  console.log('PROPS IN WILL RECEIVE', props)
    this.setState(props)
  }
 
@@ -31,21 +32,24 @@ class TaskForm extends React.Component{
 
  handleSubmit(e){
    e.preventDefault();
-    console.log('in submit to post a task::::',this.state.task)
+    console.log('in submit to post a task, this.state::::',this.state)
+    //  this.setState()
      this.props.handle(this.state);
      if (!this.props.name) this.setState({name:''})
  }
 
  handleOnChange(e){
-   let task = Object.assign(this.state, {completed:!this.state.completed})
+  //  console.log('this.props.userID ', this.props.userID);
+   let task = Object.assign(this.state, {completed:!this.state.completed, completedBy:this.props.userID})
    this.setState({task}, () => {
-    this.props.handle(this.state.task);
+     console.log("State after the checkbox is checked:  ", this.state)
+    this.props.handle(this.state);
   });
   // console.log('state in onChange button',this.state.task.completed);
  }
  
  render(){
-   console.log("props from tasksQueue::::", this.state)
+  //  console.log("props from tasksQueue::::", this.state)
    return(
      <div className='task-form-div'>
        <form
