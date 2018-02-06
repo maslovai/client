@@ -2,12 +2,12 @@
 import superagent from'superagent';
 let API = `${__API_URL__}`;
 
-export const tasksInitialize = () => dispatch => {
+export const tasksInitialize = (groupID) => dispatch => {
     //  console.log('in tasks init::::',`${API}/task/get`);
     superagent
-        .get(`${API}/task`)
+        .get(`${API}/tasks/${groupID}`)
         .then(res => {
-            // console.log('in task init:::::', res.body)
+             console.log('9999999999999in task init:::::', res.body)
             dispatch(initAction(res.body));    
         })
         .catch(console.error);

@@ -14,9 +14,9 @@ class TasksQueue extends React.Component {
         this.state = {tasks: this.props.tasks || [] }
     }
     componentWillMount(){
-        this.props.tasksInitialize();
+        let groupID = this.props.location.pathname.slice(7)
+        this.props.tasksInitialize(groupID);
     }
-
 
     render() {
         return (
@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch, getState)=>({
     taskCreate: task => dispatch(tasksActions.taskCreate(task)),
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
     taskDelete: task => dispatch(tasksActions.taskDelete(task)),
-    tasksInitialize: ()=> dispatch(tasksActions.tasksInitialize())
+    tasksInitialize: id => dispatch(tasksActions.tasksInitialize(id))
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(TasksQueue);
