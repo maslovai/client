@@ -19,6 +19,10 @@ class TaskForm extends React.Component{
    this.handleOnChange = this.handleOnChange.bind(this);
  }
 
+ componentWillReceiveProps(props){
+  console.log('PROPS IN WILL RECEIVE', props)
+  // this.setState(nextState)
+}
  handleChange(e){
    let {name, value} = e.target;
    this.setState({[name]: value});
@@ -31,9 +35,7 @@ class TaskForm extends React.Component{
  }
 
  handleOnChange(e){
-  this.setState({completed: e.target.checked});
-  this.props.handle(this.state);
-  console.log(this.state);
+  this.setState({completed: e.target.checked}, ()=>this.props.handle(this.state));
  }
  
  render(){
