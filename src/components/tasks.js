@@ -23,12 +23,14 @@ class TasksQueue extends React.Component {
             <div>
                 <div className='inputDiv'>
                     <h2>Create a task:</h2>
+
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
                                 task={{}}
                     />
                 </div>
                 <div className = 'taskQueue'>
+
                     <h2>Group's tasks. Click on task and write your name to claim</h2>
                     <ul className = "taskQueue">
                         {
@@ -43,8 +45,8 @@ class TasksQueue extends React.Component {
                         }
                     </ul>
                 </div>
-                
-            </div>    
+
+            </div>
         )
     }
 }
@@ -55,7 +57,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState)=>({
     taskCreate: task => dispatch(tasksActions.taskCreate(task)),
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
-    taskDelete: task => dispatch(tasksActions.taskDelete(task)), 
+    taskDelete: task => dispatch(tasksActions.taskDelete(task)),
     tasksInitialize: ()=> dispatch(tasksActions.tasksInitialize())
 })
 
