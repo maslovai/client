@@ -1,8 +1,25 @@
 main{
+    min-height: 50em;
+    h2{
+        padding:1em;
+
+    }
     div {
         display:flex;
         flex-direction:column;
         align-items: center;
         justify-content: space-around;
+        ul{
+            margin-top: 1em;
+            li{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                line-height: 2.5em;
+                div{
+                    margin-left:1em;   
+                }
+            }
+        }
     }
 }

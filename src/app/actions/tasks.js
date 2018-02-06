@@ -3,9 +3,9 @@ import superagent from'superagent';
 let API = `${__API_URL__}`;
 
 export const tasksInitialize = () => dispatch => {
-     console.log('in tasks init::::',`${API}/task/get`);
+    //  console.log('in tasks init::::',`${API}/task/get`);
     superagent
-        .get(`${API}/task/get`)
+        .get(`${API}/task`)
         .then(res => {
             // console.log('in task init:::::', res.body)
             dispatch(initAction(res.body));    
@@ -16,10 +16,10 @@ export const tasksInitialize = () => dispatch => {
 export const taskCreate = payload => dispatch => {
     console.log("in actions - post note::::", payload)
     superagent
-    .post(`${API}/task/post`)
+    .post(`${API}/task`)
     .send({"name" : payload.name})
     .then(res => {
-        console.log('after post:::::', res.body)
+        // console.log('after post:::::', res.body)
         dispatch(createAction(res.body))
     } )
     .catch(err => console.log(err))
@@ -27,16 +27,33 @@ export const taskCreate = payload => dispatch => {
 
 
 export const taskUpdate = payload => dispatch => {
+    console.log("in actions update, payload", payload)
     superagent
-        .put(`${API}/task/put`)
-        .send(payload)
-        .then(()=>{
-            dispatch(updateAction(payload))
-        })
-        .catch(err=>console.log(err))
+    .put(`${API}/task/${payload._id}`)
+    .send(payload)
+    .then((res)=>{
+        console.log('after update returns from backend::::::::', res.body)
+        dispatch(updateAction(res.body))
+    })
+    .catch(err=>console.log(err))
 }
 
-const createAction = task =>{
+export const taskDelete = payload => dispatch => {
+    console.log("in actions delete, payload._id:", payload._id)
+    superagent
+    .delete(`${API}/task/${payload._id}`)
+    .then(()=>{
+        console.log('after delete returns from backend::::::::', payload)
+        dispatch(deleteAction(payload));
+    })
+};
+
+const initAction = list => ({
+    type: 'INIT',
+    payload: list
+ })
+
+const createAction = task => {
     return {
         type: "CREATE_TASK",
         payload:task
@@ -50,10 +67,6 @@ const updateAction = task => {
     }
 }
 
-const initAction = list => ({
-    type: 'INIT',
-    payload: list
- });
 
 const deleteAction = task => {
     return {

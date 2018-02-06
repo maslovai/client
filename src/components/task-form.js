@@ -7,11 +7,22 @@ const renderIf = (test, component, alternative) => {
 class TaskForm extends React.Component{
  constructor(props) {
    super(props);
-   this.state = {
-     name: this.props.name || ''
+   this.state = this.props || {
+     task: {
+      name: '',
+      _id: '',
+      completed: false
+     }
    }
+
    this.handleSubmit = this.handleSubmit.bind(this);
    this.handleChange = this.handleChange.bind(this);
+   this.handleOnChange = this.handleOnChange.bind(this);
+ }
+
+ componentWillReceiveProps(props, nextState){
+   console.log('PROPS IN WILL RECEIVE', props, nextState)
+   // this.setState(nextState)
  }
 
  handleChange(e){
@@ -21,33 +32,43 @@ class TaskForm extends React.Component{
 
  handleSubmit(e){
    e.preventDefault();
-  //  console.log('state in submit form', this.state);
-   if (!this.props.name) {
-     this.props.handleCreate(this.state);
-     this.setState({name:''});
-   } 
-    else this.props.handleUpdate(this.state)  
- };
+     this.props.handle(this.state);
+     if (!this.props.task.name) this.setState({task:{name:''}})
+ }
+
+ handleOnChange(e){
+   let task = Object.assign(this.state.task, {completed:!this.state.completed})
+   this.setState({task}, () => {
+    this.props.handle(this.state.task);
+  });
+  console.log('state in onChange button',this.state.task.completed);
+ }
  
  render(){
+   console.log("last try:::::::::", this.state)
    return(
      <div className='task-form-div'>
        <form
          onSubmit={this.handleSubmit}>
-         <input         
-           className={this.props.name ? "listInput" : "newInput"}
+         <input    
+           className={this.props.task ? "listInput" : "newInput"}
+           id={this.state.task.completed ? "completedTask" : "incompleteTask"}
            type='text'
            name='name'
            placeholder='What needs to be done?'
-           value={this.state.name}
+           value={this.state.task.name}
            onChange={this.handleChange}
          />
          {
-           renderIf(!this.props.name,
-            <button type='submit'> {this.props.button} </button>,
-            null  )
+           renderIf(this.state.button,
+            <button type='submit'> {this.state.button} </button>,
+            <input id="checkBox" 
+                   type="checkbox" 
+                   onChange= {this.handleOnChange} 
+                   checked = {this.state.task.completed}  
+            />
+           )
          }
-        
        </form>
      </div>
    )

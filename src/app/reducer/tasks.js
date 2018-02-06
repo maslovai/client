@@ -18,8 +18,7 @@ export default (state=initialState, action) => {
 
     case 'DELETE_TASK':
         return state.filter(task =>{
-            console.log('type', typeof task._id)
-            console.log('in reducer delete:::', task, payload)
+            // console.log('in reducer delete:::', task, payload)
             return task._id !== payload._id
         }) 
 

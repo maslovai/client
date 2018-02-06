@@ -16,26 +16,27 @@ class TasksQueue extends React.Component {
     componentWillMount(){
         this.props.tasksInitialize();
     }
+
+
     render() {
         return (
             <div>
-                <div>
+                <div className='inputDiv'>
                     <h2>Create a task:</h2>
-                    <TaskForm handleCreate= {this.props.taskCreate} 
+                    <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
+                                task={{}}
                     />
                 </div>
                 <div className = 'taskQueue'>
-                    <h2>Here are your group's tasks:</h2>
+                    <h2>Group's tasks. Click on task and write your name to claim</h2>
                     <ul className = "taskQueue">
                         {
                             this.props.tasks.map((task, i)=> 
-                                <li key = {i}>
-                                    <TaskForm
-                                        handleDel={this.props.taskDelete}
-                                        handleUpdate={this.props.taskUpdate}
-                                        name = {task.name}
-                                        button ="Edit Task"
+                                <li key = {i} >
+                                    <span onClick={()=>this.props.taskDelete(task)}>x</span>
+                                    <TaskForm handle = {this.props.taskUpdate} 
+                                        task={{name:task.name, completed:task.completed,_id:task._id}}
                                     />
                                 </li>
                             )
