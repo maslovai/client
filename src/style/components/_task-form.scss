@@ -2,32 +2,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     form{
+        .newInput{
+            margin:1em, 0, 0,0.5em;
+            padding:0.5em; 
+            width:30em; 
+            border-radius:25px; 
+            font-size:1.5em;
+            line-height: 2.5em;
+        }
         .listInput{
-            font-size:1.2em;
             background: $baseLight;
+            margin-top:0.2em;
+            padding:0.5em;
             border: none;
+            border-radius: 25px;
             width: 30em;
+            font-size:1.5em;
+            line-height: 2em;
         }
         #completedTask{
             text-decoration:line-through;
+            border-radius:10px;   
         }
         #incompleteTask{
             text-decoration: none;
+            background: darken($baseLight, 15%);
         }
         #checkBox{
+            margin-left: 1em;
             width: 1.5em;
             height: 1.5em;
-        }
-        .newInput{
-            margin:1em;
-            padding:0.5em; 
-            width:30em; 
         }
        
         button{
             box-shadow: 0 3px 2px #777;
+            margin:1em;
+            font-size:1.5em;
+            width: 8em;
+            background: darken($baseLight,15%);
+            border-radius: 25px;
         }  
     }
 }

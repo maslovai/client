@@ -44,7 +44,7 @@ class TaskForm extends React.Component{
          onSubmit={this.handleSubmit}>
          <input    
            className={this.props.name ? "listInput" : "newInput"}
-           id={this.props.completed ? "completedTask" : "incompeteTask"}
+           id={this.props.completed ? "completedTask" : "incompleteTask"}
            type='text'
            name='name'
            placeholder='What needs to be done?'

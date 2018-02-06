@@ -33,7 +33,7 @@ class App extends React.Component {
         return (
             <React.Fragment>
 
-                <Header appTitle="Task-Off!" />
+                <Header appTitle="Task-Off" />
 
                 { /* TODO: Probably should send the routing actions and the route state so you can show/hide links in the menu */ }
                 <Navbar auth={this.props.auth} switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
