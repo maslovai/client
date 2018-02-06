@@ -1,0 +1,32 @@
+.grpLabel {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.groupCreateLabel {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: .5em;
+  padding-top: 1em;
+}
+
+.groupAdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  outline: none
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}

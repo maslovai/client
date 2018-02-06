@@ -21,7 +21,6 @@ class Navbar extends React.Component {
                     <ul>
                     <li onClick={this.showGroups}>Groups</li>
                     <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li>
-                    <li onClick={ () => this.props.switchRoute('/profile') }>Profile</li>
                     <li onClick={this.props.logout}>Logout</li>
                     </ul>
                 )}
