@@ -21,15 +21,15 @@ class TasksQueue extends React.Component {
             <div>
                 <div>
                     <h2>Create a task:</h2>
-                    <TaskForm handleCreate= {this.props.taskCreate} 
+                    <TaskForm handleCreate= {this.props.taskCreate}
                                 button = "Save Task"
                     />
                 </div>
                 <div className = 'taskQueue'>
-                    <h2>Here are your group's tasks:</h2>
+                    <h2>Here are your groups tasks:</h2>
                     <ul className = "taskQueue">
                         {
-                            this.props.tasks.map((task, i)=> 
+                            this.props.tasks.map((task, i)=>
                                 <li key = {i}>
                                     <TaskForm
                                         handleDel={this.props.taskDelete}
@@ -42,8 +42,8 @@ class TasksQueue extends React.Component {
                         }
                     </ul>
                 </div>
-                
-            </div>    
+
+            </div>
         )
     }
 }
@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState)=>({
     taskCreate: task => dispatch(tasksActions.taskCreate(task)),
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
-    taskDelete: task => dispatch(tasksActions.taskDelete(task)), 
+    taskDelete: task => dispatch(tasksActions.taskDelete(task)),
     tasksInitialize: ()=> dispatch(tasksActions.tasksInitialize())
 })
 
