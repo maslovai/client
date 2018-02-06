@@ -32,6 +32,7 @@ class App extends React.Component {
             <React.Fragment>
 
                 <Header appTitle="Task-Off" />
+
                 <Navbar auth={this.props.auth} switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
 
                 <main>
