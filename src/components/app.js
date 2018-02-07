@@ -17,46 +17,56 @@ import * as taskActions from '../app/actions/tasks'
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+
+    this.state = { viewTasks: false}
+
+    this.toggleView = this.toggleView.bind(this);
+  }
     
-    componentWillMount() {
-      this.props.validate();
-      console.log(this.state);
-      console.log('auth ', this.props.auth)
-    }
-   
-    render() {
-        return (
-            <React.Fragment>
+  componentWillMount() {
+    this.props.validate();
+  }
 
-                <Header appTitle="Task-Off" />
+  toggleView() {    
+    let viewTasks = Object.assign(this.state, {viewTasks:true})  
+    this.setState(viewTasks)      
+  }
+  
+  render() {
+    return (
+      <React.Fragment>
 
-                <Navbar auth={this.props.auth} switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
+        <Header appTitle="Task-Off" />
 
-                <main>
-                  <Switch location={{pathname:this.props.route}}>
-                      <Route path='/queue' component={TasksQueue}/>
-                      <Route exact path='/login' component={Login}/>
-                      <Route exact path='/groups' component={() => <Groups switchRoute={this.props.switchRoute}/>}/>
-                  </Switch>
-                </main>
+        <Navbar auth={this.props.auth}
+            viewTasks={this.state.viewTasks}
+            switchRoute={this.props.switchRoute} logout={this.props.logout}/> 
 
-                <Footer>
-                    <p>&copy;2018 The Awesome People</p>
-                </Footer>
+        <main>
+          <Switch location={{pathname:this.props.route}}>
+            <Route path='/queue' component={TasksQueue}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/groups' component={() => 
+              <Groups toggleView={this.toggleView} switchRoute={this.props.switchRoute}/>}/>
+          </Switch>
+        </main>
 
-            </React.Fragment>
-        )
-    }
+        <Footer>
+          <p>&copy;2018 The Awesome People</p>
+        </Footer>
+
+      </React.Fragment>
+    )
+  }
 }
 
 // TODO: Map state, dispatch, and connect the App
 const mapStateToProps = (state) => ({
-    auth: state.auth,
-    profile: state.profile,
-    route: state.route, 
+  auth: state.auth,
+  profile: state.profile,
+  route: state.route, 
 });
     
 const mapDispatchToProps = (dispatch, getState) => ({

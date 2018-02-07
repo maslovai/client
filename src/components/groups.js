@@ -12,17 +12,8 @@ class Groups extends React.Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.handleJoin = this.handleJoin.bind(this);    
     this.handleRemove = this.handleRemove.bind(this);
+    this.routeToTasks = this.routeToTasks.bind(this);
   }
-
-  // componentWillMount() {
-
-  //   const user = this.props.user;
-  //   console.log('this.props is ', this.props)
-
-  //   if(user && user.groupNames.length) {
-  //     this.props.initGroups(user.groups_IDs);
-  //   }
-  // }
 
   componentWillReceiveProps(props) {
     if(this.props.user) { this.setState(this.props.user) }
@@ -43,6 +34,12 @@ class Groups extends React.Component {
     this.props.removeGroup(userID, group);
   }
 
+  routeToTasks(e){
+    let groupID = e.target.dataset['id'];
+    this.props.toggleView();
+    this.props.switchRoute(`/queue/${groupID}`);
+  }
+
   render() {
 
     const user = this.props.user;
@@ -57,9 +54,8 @@ class Groups extends React.Component {
           user.groupNames.map((groupName, i) =>
           <li className='groupli' 
           key={i} 
-          onClick={() => this.props.switchRoute(`/queue/${user.group_IDs[i]}`) }>{groupName}
-          </li>   
-
+          data-id={user.group_IDs[i]}
+          onClick={this.routeToTasks}>{groupName}</li>
         )}
         </div>
       )}
@@ -74,11 +70,11 @@ class Groups extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   user: state.user
+   user: state.user,
 });
 
 const mapDispatchToProps = (dispatch, getState) => ({
-  initGroups: user => dispatch(groupActions.initGroups(user)),
+  initGroups: (user) => dispatch(groupActions.initGroups(user)),
   addGroup: (userID, group) => dispatch(groupActions.addGroup(userID, group)),
   joinGroup: (userID, alias) => dispatch(groupActions.joinGroup(userID, alias)),
   removeGroup: (userID, group) => dispatch(groupActions.removeGroup(userID, group))
