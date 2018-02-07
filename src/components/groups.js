@@ -42,8 +42,6 @@ class Groups extends React.Component {
 
   render() {
 
-    //onClick={() => this.props.switchRoute(`/queue/${user.group_IDs[i]}`) }>{groupName}
-
     const user = this.props.user;
 
     return (
