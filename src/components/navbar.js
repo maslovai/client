@@ -20,10 +20,11 @@ class Navbar extends React.Component {
                 {renderIf(this.props.auth,
                     <ul>
                     <li onClick={this.showGroups}>Groups</li>
-                    {/* <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li> */}
                     <li onClick={this.props.logout}>Logout</li>
+                    {renderIf(this.props.viewTasks,
+                    <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li>)}                     
                     </ul>
-                )}
+                )}                    
             </nav>
 
         )
