@@ -22,7 +22,6 @@ class TaskForm extends React.Component{
  }
 
  componentWillReceiveProps(props){
-  //  console.log('PROPS IN WILL RECEIVE', props)
    this.setState(props)
  }
 
@@ -34,7 +33,6 @@ class TaskForm extends React.Component{
  handleSubmit(e){
    e.preventDefault();
     console.log('in submit to post a task, this.state::::',this.state)
-    //  this.setState()
      this.props.handle(this.state);
      if (!this.props.name) this.setState({name:''})
  }
@@ -42,7 +40,6 @@ class TaskForm extends React.Component{
  handleOnChange(e){
    let task = Object.assign(this.state, {completed:!this.state.completed, completedBy:this.props.userID})
    this.setState({task}, () => {
-      // console.log("State after the checkbox is checked:  ", this.state)
       this.props.handle(this.state);
    })
    let input = document.createElement('input');
@@ -53,7 +50,6 @@ class TaskForm extends React.Component{
       let input = document.createElement('input');
       input.value = this.state.initials;
       input.id = this.state._id
-      console.log("input is",input.id)
       document.getElementById(`checkedTest${this.state._id}`).appendChild(input);
    }
    else{
@@ -63,7 +59,6 @@ class TaskForm extends React.Component{
  }
  
  render(){
-  //  console.log("props from tasksQueue::::", this.state)
    return(
      <div className='task-form-div'>
        <form id={this.props.name ? "listForm" : null}
