@@ -11,9 +11,6 @@ export default (state=initialState, {type, payload}) => {
       case 'LOGOUT':
          return initialState;
 
-      case 'GET_GROUPS':
-        return payload || [];
-
       default:
         return state;
   }
