@@ -37,11 +37,6 @@ export const joinGroup = (id, alias) => (dispatch) => {
 }
 
 
-const getGroups = (groupNames) => ({
-  type: 'GET_GROUPS',
-  payload: groupNames
-})
-
 const updateUser = (user) => ({
   type: 'USER_UPDATE',
   payload: user
