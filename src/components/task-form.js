@@ -10,7 +10,7 @@ class TaskForm extends React.Component{
    this.state = {
      name:this.props.name || '',
      completed:this.props.completed || false,
-     groupID:this.props.groupID || '1',
+     groupID:this.props.groupID || '',
      _id:this.props._id || '',
      completedBy:this.props.userID || '',
      initials:this.props.userName
