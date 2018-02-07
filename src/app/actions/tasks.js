@@ -29,7 +29,7 @@ export const taskCreate = payload => dispatch => {
 export const taskUpdate = payload => dispatch => {
     console.log("in actions update, payload", payload)
     superagent
-    .put(`${API}/task/${payload.task_id}`)
+    .put(`${API}/task/${payload._id}`)
     .send(payload)
     .then((res)=>{
         console.log('after update returns from backend::::::::', res.body)

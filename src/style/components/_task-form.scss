@@ -23,6 +23,12 @@
             font-size:1.5em;
             line-height: 2em;
         }
+        #listForm{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            div{width:10em;}
+        }
         #completedTask{
             text-decoration:line-through;
             border-radius:10px;   

@@ -10,8 +10,10 @@ class TaskForm extends React.Component{
    this.state = {
      name:this.props.name || '',
      completed:this.props.completed || false,
-     groupID: this.props.groupID || '1',
-     task_id:this.props._id || '' 
+     groupID:this.props.groupID || '',
+     _id:this.props._id || '',
+     completedBy:this.props.userID || '',
+     initials:this.props.userName
    }
 
    this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +22,6 @@ class TaskForm extends React.Component{
  }
 
  componentWillReceiveProps(props){
-   console.log('PROPS IN WILL RECEIVE', props)
    this.setState(props)
  }
 
@@ -31,24 +32,36 @@ class TaskForm extends React.Component{
 
  handleSubmit(e){
    e.preventDefault();
-    console.log('in submit to post a task::::',this.state.task)
+    console.log('in submit to post a task, this.state::::',this.state)
      this.props.handle(this.state);
      if (!this.props.name) this.setState({name:''})
  }
 
  handleOnChange(e){
-   let task = Object.assign(this.state, {completed:!this.state.completed})
+   let task = Object.assign(this.state, {completed:!this.state.completed, completedBy:this.props.userID})
    this.setState({task}, () => {
-    this.props.handle(this.state.task);
-  });
-  // console.log('state in onChange button',this.state.task.completed);
+      this.props.handle(this.state);
+   })
+   let input = document.createElement('input');
+   input.value = this.state.initials;
+   input.id = this.state._id;
+
+   if (this.state.completed){
+      let input = document.createElement('input');
+      input.value = this.state.initials;
+      input.id = this.state._id
+      document.getElementById(`checkedTest${this.state._id}`).appendChild(input);
+   }
+   else{
+      document.getElementById(input.id).remove();
+   }
+   
  }
  
  render(){
-   console.log("props from tasksQueue::::", this.state)
    return(
      <div className='task-form-div'>
-       <form
+       <form id={this.props.name ? "listForm" : null}
          onSubmit={this.handleSubmit}>
          <input    
            className={this.props.name ? "listInput" : "newInput"}
@@ -62,11 +75,13 @@ class TaskForm extends React.Component{
          {
            renderIf (!this.props.name,
             <button type='submit'> {this.props.button} </button>,
-            <input id="checkBox" 
-                   type="checkbox" 
-                   onChange= {this.handleOnChange} 
-                   checked = {this.state.completed}  
-            />
+            <div id = {`checkedTest${this.state._id}`}className = 'currentTask'>
+              <input  
+                    type="checkbox" 
+                    onChange= {this.handleOnChange} 
+                    checked = {this.state.completed}  
+              />
+            </div>
            )
          }
        </form>

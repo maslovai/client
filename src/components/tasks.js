@@ -3,15 +3,17 @@ import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
 import TaskForm from './task-form';
 
-// const renderIf = (test, component, alternative) => {
-//     return test ? component : alternative
-// }
+
+
 
 class TasksQueue extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {tasks: this.props.tasks || [] }
+        this.state = {
+            tasks: this.props.tasks || [],
+            groupID:this.props.location.pathname.slice(7)
+        }
     }
     componentWillMount(){
         let groupID = this.props.location.pathname.slice(7)
@@ -20,13 +22,13 @@ class TasksQueue extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = 'queueView'>
                 <div className='inputDiv'>
                     <h2>Create a task:</h2>
 
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
-                                groupID = "1"
+                                groupID={this.state.groupID}
                     />
                 </div>
                 <div className = 'taskQueue'>
@@ -41,7 +43,9 @@ class TasksQueue extends React.Component {
                                         name={task.name}
                                         completed={task.completed}
                                         _id={task._id}
-                                        groupID="1"
+                                        groupID={this.state.groupID}
+                                        userID = {this.props.user._id}
+                                        userName = {this.props.user.username.split('.').slice(1)}
                                     />
                                 </li>
                             )
@@ -54,7 +58,8 @@ class TasksQueue extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    tasks : state.tasks
+    tasks : state.tasks,
+    user:state.user
 })
 
 const mapDispatchToProps = (dispatch, getState)=>({
