@@ -11,7 +11,10 @@ class TasksQueue extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {tasks: this.props.tasks || [] }
+        this.state = {
+            tasks: this.props.tasks || [],
+            groupID:this.props.location.pathname.slice(7)
+        }
     }
     componentWillMount(){
         let groupID = this.props.location.pathname.slice(7)
@@ -26,7 +29,7 @@ class TasksQueue extends React.Component {
 
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
-                                groupID={groupID}
+                                groupID={this.state.groupID}
                     />
                 </div>
                 <div className = 'taskQueue'>
@@ -41,8 +44,9 @@ class TasksQueue extends React.Component {
                                         name={task.name}
                                         completed={task.completed}
                                         _id={task._id}
-                                        groupID={groupID}
+                                        groupID={this.state.groupID}
                                         userID = {this.props.user._id}
+                                        userName = {this.props.user.username.split('.').slice(1)}
                                     />
                                 </li>
                             )

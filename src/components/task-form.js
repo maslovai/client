@@ -11,8 +11,9 @@ class TaskForm extends React.Component{
      name:this.props.name || '',
      completed:this.props.completed || false,
      groupID:this.props.groupID || '1',
-     taskID:this.props._id || '',
-     competedBy:this.props.userID || ''
+     _id:this.props._id || '',
+     competedBy:this.props.userID || '',
+     initials:this.props.userName
    }
 
    this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,20 +40,33 @@ class TaskForm extends React.Component{
  }
 
  handleOnChange(e){
-  //  console.log('this.props.userID ', this.props.userID);
    let task = Object.assign(this.state, {completed:!this.state.completed, completedBy:this.props.userID})
    this.setState({task}, () => {
-     console.log("State after the checkbox is checked:  ", this.state)
-    this.props.handle(this.state);
-  });
-  // console.log('state in onChange button',this.state.task.completed);
+      // console.log("State after the checkbox is checked:  ", this.state)
+      this.props.handle(this.state);
+   })
+   let input = document.createElement('input');
+   input.value = this.state.initials;
+   input.id = this.state._id;
+
+   if (this.state.completed){
+      let input = document.createElement('input');
+      input.value = this.state.initials;
+      input.id = this.state._id
+      console.log("input is",input.id)
+      document.getElementById(`checkedTest${this.state._id}`).appendChild(input);
+   }
+   else{
+      document.getElementById(input.id).remove();
+   }
+   
  }
  
  render(){
   //  console.log("props from tasksQueue::::", this.state)
    return(
      <div className='task-form-div'>
-       <form
+       <form id={this.props.name ? "listForm" : null}
          onSubmit={this.handleSubmit}>
          <input    
            className={this.props.name ? "listInput" : "newInput"}
@@ -66,11 +80,13 @@ class TaskForm extends React.Component{
          {
            renderIf (!this.props.name,
             <button type='submit'> {this.props.button} </button>,
-            <input id="checkBox" 
-                   type="checkbox" 
-                   onChange= {this.handleOnChange} 
-                   checked = {this.state.completed}  
-            />
+            <div id = {`checkedTest${this.state._id}`}className = 'currentTask'>
+              <input  
+                    type="checkbox" 
+                    onChange= {this.handleOnChange} 
+                    checked = {this.state.completed}  
+              />
+            </div>
            )
          }
        </form>
