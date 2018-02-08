@@ -43,22 +43,71 @@ main{
     }
 }
 
-.unsubscribe:after {
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a.unsubscribe:after {
     
-    content: "\f146";
+    content: "\f056";
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
     text-decoration: inherit;
 /*--adjust as necessary--*/
-    color: #000;
+    color: rgb(242, 13, 13) ;
     font-size: 18px;
-    padding-right: 0.5em;
-    position: absolute;
-    top: 10px;
-    left: 0;
+    padding-left: 0.6em;
+    padding-bottom: 1.1em;
+    display: flex;
+    align-items: center;
+}
 
-    &:hover {
-        color: red;
-    }
+a.unsubscribe:hover:after {
+    content: "\f057";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: rgb(179, 41, 41);
+    font-size: 18px;
+    padding-left: 0.6em;
+    padding-bottom: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+a.deleteButton:after {
+    
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: rgb(242, 13, 13);
+    font-size: 18px;
+    padding-left: 0.6em;
+    padding-bottom: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+a.deleteButton:hover:after {
+    
+    content: "\f06a";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: rgb(179, 41, 41);
+    font-size: 18px;
+    padding-left: 0.6em;
+    padding-bottom: 1.1em;
+    display: flex;
+    align-items: center;
 }

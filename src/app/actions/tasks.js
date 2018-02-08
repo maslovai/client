@@ -47,12 +47,6 @@ export const taskDelete = payload => dispatch => {
     })
 };
 
-export const getCreator = (groupID) => {
-    superagent
-        .get(`${API}/group/mod/${groupID}`)
-        .then(res => {return res.body});
-}
-
 const initAction = list => ({
     type: 'INIT',
     payload: list

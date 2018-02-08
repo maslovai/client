@@ -2,6 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
 import TaskForm from './task-form';
+import request from 'superagent';
+
+let API = `${__API_URL__}`;
 
 class TasksQueue extends React.Component {
 
@@ -10,34 +13,55 @@ class TasksQueue extends React.Component {
         this.state = {
             tasks: this.props.tasks || [],
             groupID:this.props.location.pathname.slice(7, 31),
-            groupName: this.props.location.pathname.slice(32)
+            groupName: this.props.location.pathname.slice(32),
+            buttonName: this.props.buttonName || '',
+            buttonText: this.props.buttonText || ''
         }
-        this.getButtonType = this.getButtonType.bind(this);
+        this.getCreator = this.getCreator.bind(this);
+        this.routeToGroups = this.routeToGroups.bind(this);
     }
     componentWillMount(){
         let groupID = this.props.location.pathname.slice(7, 31)
         this.props.tasksInitialize(groupID);
+        this.getCreator(this.state.groupID);
+        console.log('TASKS: ', this.state)
     }
 
     componentWillReceiveProps(props){
         if(props) this.setState(this.props);
     }
 
-    getButtonType(){
-       let creatingUser = this.props.getCreator(this.state.groupID);
-       return this.props.user._id === creatingUser ? 'deleteButton' : 'unsubscribe';      
+    getCreator(groupID) {
+        request.get(`${API}/group/mod/${groupID}`)
+            .then(res => {
+              let creatingUser = res.text;
+              let buttonName = this.props.user._id === creatingUser ? 'deleteButton' : 'unsubscribe';
+              let buttonText = this.props.user._id === creatingUser ? 'delete group' : 'unsubscribe from group';               
+              console.log('buttonName is ', buttonName)
+              this.setState({['buttonName']: buttonName, ['buttonText']: buttonText});              
+            });
+    }
+
+    routeToGroups() {
+        //this.state.buttonName === 'unsubscribe' ? this.props.unsubscribe : this.props.removeGroup
+        //this.props.switchRoute(`/groups`);
     }
 
     render() {
-
+      
         let groupName = this.state.groupName || '';
         // let groupName = this.props.tasks.length ? this.props.tasks[0].groupName : '';
 
         return (
             <div className = 'queueView'>
                 <div className='inputDiv'>
-                    <h2 id='groupName' className={this.getButtonType}>Team {groupName}</h2>
-
+                    <div className='title'>
+                        <h2 id='groupName'>Team {groupName}</h2>
+                         <a className={this.state.buttonName} href=''
+                           onClick={this.routeToGroups}
+                           title={this.state.buttonText}>
+                        </a>
+                    </div>
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
                                 groupID={this.state.groupID}
@@ -79,7 +103,6 @@ const mapDispatchToProps = (dispatch, getState)=>({
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
     taskDelete: task => dispatch(tasksActions.taskDelete(task)),
     tasksInitialize: id => dispatch(tasksActions.tasksInitialize(id)),
-    getCreator: groupID => dispatch(taskActions.getCreator(groupID))
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(TasksQueue);
