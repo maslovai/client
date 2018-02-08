@@ -3,7 +3,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import * as profileActions from '../app/actions/profile';
+// import * as profileActions from '../app/actions/profile';
 
 class Profile extends React.Component {
 

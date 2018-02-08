@@ -13,24 +13,19 @@ class Navbar extends React.Component {
     }
     
     render() {
-
-        return (
-
-            <nav>
-                {renderIf(this.props.auth,
-                    <ul>
-                    <li onClick={this.showGroups}>Groups</li>
-                    <li onClick={this.props.logout}>Logout</li>
-                    {renderIf(this.props.viewTasks,
-                    <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li>)}                     
-                    </ul>
-                )}                    
-            </nav>
-
-        )
-
+      return (
+        <nav>
+          {renderIf(this.props.auth,
+            <ul>
+              <li onClick={this.showGroups}>Groups</li>
+              <li onClick={this.props.logout}>Logout</li>
+              {renderIf(this.props.viewTasks,
+              <li onClick={() => this.props.switchRoute('/queue') }> Tasks Queue</li>)}                     
+            </ul>
+           )}                    
+        </nav>
+      )
     }
-
 }
 
 export default Navbar;
