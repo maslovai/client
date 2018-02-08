@@ -11,6 +11,9 @@ export default (state=initialState, {type, payload}) => {
       case 'LOGOUT':
          return initialState;
 
+         case 'USER_UPDATE':		
+           return Object.assign({}, state, payload);
+
       default:
         return state;
   }

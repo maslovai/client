@@ -74,7 +74,7 @@ class TaskForm extends React.Component{
          />
          {
            renderIf (!this.props.name,
-            <button type='submit'> {this.props.button} </button>,
+            <button id='taskButton' type='submit'> {this.props.button} </button>,
             <div id = {`checkedTest${this.state._id}`}className = 'currentTask'>
               <input  
                     type="checkbox" 
