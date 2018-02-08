@@ -2,17 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .groupli {
+  display: flex;
+  justify-content: center;
   list-style: none;
   font-size: .7em;
   padding: .4em;
 }
 
 .groupHeader {
+  display: flex;
   padding-top: 2em;
   padding-bottom: .8em;
   font-size: 1em;
-  
+  justify-content: center;
+  align-content: center;
 }
+
