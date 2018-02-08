@@ -8,15 +8,25 @@ body {
     //background: $baseLight;
     
     //color: $baseDark;
-    //font-family:verdana,arial;
+    font-family: Baumans;
     &:after {
         
         @include shadow-bottom-fuzzy;
     }
 }
 
+img {
+ max-width: 100%;
+ min-width: 100%;
+}
+
+h2 {
+    font-family: Baumans;
+}
+
 main {
     padding: 2em;
 }
+
 
 @include headings();

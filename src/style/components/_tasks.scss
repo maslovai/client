@@ -16,6 +16,14 @@ main{
         .inputDiv{
             display: flex;
             flex-direction: column;
+            justify-content: center;
+
+            #groupName {
+                display: flex;
+                justify-content: center;
+                padding-bottom: 1em;
+                font-size: 1.4em;
+            }
         }
         .taskQueue{
             ul{
@@ -32,5 +40,25 @@ main{
             }
         }
         
+    }
+}
+
+.unsubscribe:after {
+    
+    content: "\f146";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    &:hover {
+        color: red;
     }
 }

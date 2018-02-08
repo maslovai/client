@@ -14,12 +14,11 @@ export const tasksInitialize = (groupID) => dispatch => {
 }
 
 export const taskCreate = payload => dispatch => {
-    console.log("in actions - post note::::", payload)
     superagent
     .post(`${API}/task`)
     .send({"name" : payload.name, "group_ID" : payload.groupID})
     .then(res => {
-        // console.log('after post:::::', res.body)
+        console.log('after post:::::', res.body)
         dispatch(createAction(res.body))
     } )
     .catch(err => console.log(err))
@@ -47,6 +46,12 @@ export const taskDelete = payload => dispatch => {
         dispatch(deleteAction(payload));
     })
 };
+
+export const getCreator = (groupID) => {
+    superagent
+        .get(`${API}/group/mod/${groupID}`)
+        .then(res => {return res.body});
+}
 
 const initAction = list => ({
     type: 'INIT',

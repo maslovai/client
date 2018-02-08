@@ -7,7 +7,7 @@ export const addGroup = (id, group) => (dispatch) => {
   
   if (token) { 
       
-    superagent.put( `${__API_URL__}/group`)
+    superagent.post( `${__API_URL__}/group`)
       .set('Authorization', `Bearer ${token}`)
       .send({id: id, name: group})
       .then(res => {

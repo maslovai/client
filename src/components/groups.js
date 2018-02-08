@@ -36,8 +36,9 @@ class Groups extends React.Component {
 
   routeToTasks(e){
     let groupID = e.target.dataset['id'];
+    let groupName = e.target.dataset['name'];
     this.props.toggleView();
-    this.props.switchRoute(`/queue/${groupID}`);
+    this.props.switchRoute(`/queue/${groupID}/${groupName}`);
   }
 
   render() {
@@ -55,6 +56,7 @@ class Groups extends React.Component {
           <li className='groupli' 
           key={i} 
           data-id={user.group_IDs[i]}
+          data-name={groupName}
           onClick={this.routeToTasks}>{groupName}</li>
         )}
         </div>

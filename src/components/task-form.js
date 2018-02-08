@@ -61,7 +61,7 @@ class TaskForm extends React.Component{
  render(){
    return(
      <div className='task-form-div'>
-       <form id={this.props.name ? "listForm" : null}
+       <form autoComplete="off" id={this.props.name ? "listForm" : null}
          onSubmit={this.handleSubmit}>
          <input    
            className={this.props.name ? "listInput" : "newInput"}
