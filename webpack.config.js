@@ -40,6 +40,7 @@ module.exports = {
 
     devtool: 'source-map',
 
+
     // Stick it into the "path" folder with that file name
     output: {
         filename: 'bundle.[hash].js',
@@ -49,19 +50,67 @@ module.exports = {
 
     module: {
         rules: [
-            // If it's a .js file not in node_modules, use the babel-loader
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+              test: /\.js$/,
+              exclude: /node_module/,
+              loader: 'babel-loader',
             },
-            // If it's a .scss file
             {
-                test: /\.scss$/,
-                loader : 'style-loader!css-loader!sass-loader'
+              test: /\.scss$/,
+              loader: ExtractPlugin.extract({
+                use: [
+                  'css-loader',
+                  'resolve-url-loader',
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      sourceMap: true,
+                      includePaths: [`${__dirname}/src/style`],
+                    }
+                  }
+                ],
+              }),
             },
-
-        ]
-    }
-
-}
+            {
+              test: /\.icon.svg$/,
+              loader: 'raw-loader',
+            },
+            {
+              test: /\.(woff|woff2|ttf|eot).*/,
+              exclude: /\.icon.svg/,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 10000,
+                    name: 'font/[name].[hash].[ext]',
+                  },
+                },
+              ],
+            },
+            {
+              test: /\.(jpg|jpeg|gif|png|tiff|svg)$/,
+              exclude: /\.icon.svg$/,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 60000,
+                    name: 'assets/images/[name].[ext]',
+                  },
+                },
+              ],
+            },
+            {
+              test: /\.(mp3|aac|aiff|wav|flac|m4a|ogg)$/,
+              exclude: /\.glyph.svg/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: { name: 'audio/[name].[ext]' },
+                },
+              ],
+            },
+          ],
+        },
+    };

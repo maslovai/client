@@ -5,6 +5,12 @@ a.login {
 }
 
 a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+a:visited {
   text-decoration: none;
 }
 
