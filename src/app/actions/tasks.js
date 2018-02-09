@@ -7,8 +7,8 @@ export const tasksInitialize = (groupID) => dispatch => {
     superagent
         .get(`${API}/tasks/${groupID}`)
         .then(res => {
-             console.log('9999999999999in task init:::::', res.body)
-            dispatch(initAction(res.body));    
+            //  console.log('in task init:::::', res.body)
+            dispatch(initAction(res.body.tasks));    
         })
         .catch(console.error);
 }

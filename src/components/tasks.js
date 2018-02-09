@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
 import TaskForm from './task-form';
 
-
-
-
 class TasksQueue extends React.Component {
 
     constructor(props) {
