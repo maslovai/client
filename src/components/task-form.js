@@ -61,7 +61,7 @@ class TaskForm extends React.Component{
  render(){
    return(
      <div className='task-form-div'>
-       <form id={this.props.name ? "listForm" : null}
+       <form autoComplete="off" className='newTasks' id={this.props.name ? "listForm" : null}
          onSubmit={this.handleSubmit}>
          <input    
            className={this.props.name ? "listInput" : "newInput"}
@@ -78,6 +78,7 @@ class TaskForm extends React.Component{
             <div id = {`checkedTest${this.state._id}`}className = 'currentTask'>
               <input  
                     type="checkbox" 
+                    id='checkbox'
                     onChange= {this.handleOnChange} 
                     checked = {this.state.completed}  
               />

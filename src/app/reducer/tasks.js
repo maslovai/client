@@ -7,7 +7,6 @@ export default (state=initialState, action) => {
   switch(type) {
 
     case 'INIT':
-        console.log("INIT");
         return payload || initialState;
 
     case 'CREATE_TASK':
@@ -17,10 +16,9 @@ export default (state=initialState, action) => {
         return state.map(task => task._id === payload._id ? payload : task);
 
     case 'DELETE_TASK':
-        return state.filter(task =>{
-            // console.log('in reducer delete:::', task, payload)
-            return task._id !== payload._id
-        }) 
+        return state.filter(task => task._id !== payload._id); 
+    
+        return {group: payload} || intialState;
 
     case 'RESET':
         return initialState;
