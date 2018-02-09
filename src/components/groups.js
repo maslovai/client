@@ -53,11 +53,12 @@ class Groups extends React.Component {
         <p className='groupHeader'>My Groups</p>
         {
           user.groupNames.map((groupName, i) =>
-          <li className='groupli' 
+          <a className='groupli' 
+          href="javascript:;"
           key={i} 
           data-id={user.group_IDs[i]}
           data-name={groupName}
-          onClick={this.routeToTasks}>{groupName}</li>
+          onClick={this.routeToTasks}>{groupName}</a>
         )}
         </div>
       )}

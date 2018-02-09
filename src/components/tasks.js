@@ -43,9 +43,6 @@ class TasksQueue extends React.Component {
     }
 
     routeToGroups() {
-        //this.state.buttonName === 'unsubscribe' ? this.props.unsubscribe : this.props.removeGroup
-        //this.props.switchRoute(`/groups`);
-        console.log('this.state.groupID:', this.state.groupID)
         this.props.remove(this.props.user._id, this.state.groupID);
     }
 
@@ -75,7 +72,8 @@ class TasksQueue extends React.Component {
                         {
                             this.props.tasks.map((task, i)=> 
                                 <li key = {i} >
-                                    <span onClick={()=>this.props.taskDelete(task)}>x</span>
+                                    <a id='deleteTask' href="javascript:;" title='Delete task'
+                                      onClick={()=>this.props.taskDelete(task)}></a>
                                     <TaskForm handle = {this.props.taskUpdate} 
                                         name={task.name}
                                         completed={task.completed}
@@ -105,7 +103,6 @@ const mapDispatchToProps = (dispatch, getState)=>({
     taskDelete: task => dispatch(tasksActions.taskDelete(task)),
     tasksInitialize: id => dispatch(tasksActions.tasksInitialize(id)),
     remove: (userID, groupID) => dispatch(groupActions.remove(userID, groupID)),
-//unsubscribe: (userID, groupID) => dispatch(groupActions.unsubscribe(userID, groupID))
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(TasksQueue);

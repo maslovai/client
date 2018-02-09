@@ -9,6 +9,7 @@ form {
    margin: 0 auto;
 }
 
+
 #listHeader {
 
     margin-top: 2em;
@@ -41,7 +42,9 @@ form {
             width: 15em;
             font-size:1.5em;
             line-height: 2em;
-            text-align: left;            
+            text-align: left;  
+            display: flex;
+            flex-direction: row;          
         }
         #listForm{
             display:flex;
@@ -85,4 +88,18 @@ form {
 
 h2 {
     text-align: left;
+}
+
+.newTasks {
+  display: flex;
+  flex-direction: column;
+}
+
+form#listForm {
+    display: flex;
+    flex-direction: row;
+}
+
+#checkbox {
+    margin-top: 1.2em;
 }

@@ -32,7 +32,6 @@ main{
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
-                    line-height: 2.5em;
                     div{
                         margin-left:1em;   
                     }
@@ -57,7 +56,7 @@ a.unsubscribe:after {
     font-weight: normal;
     text-decoration: inherit;
     color: rgb(242, 13, 13) ;
-    font-size: 18px;
+    font-size: 20px;
     padding-left: 0.6em;
     padding-bottom: 1.1em;
     display: flex;
@@ -70,8 +69,8 @@ a.unsubscribe:hover:after {
     font-style: normal;
     font-weight: normal;
     text-decoration: inherit;
-    color: rgb(179, 41, 41);
-    font-size: 18px;
+    color: rgb(242, 13, 13);
+    font-size: 20px;
     padding-left: 0.6em;
     padding-bottom: 1.1em;
     display: flex;
@@ -100,10 +99,24 @@ a.deleteButton:hover:after {
     font-style: normal;
     font-weight: normal;
     text-decoration: inherit;
-    color: rgb(179, 41, 41);
+    color: rgb(242, 13, 13);
     font-size: 18px;
     padding-left: 0.6em;
     padding-bottom: 1.1em;
     display: flex;
     align-items: center;
 }
+
+
+a#deleteTask:before {
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: rgb(242, 13, 13);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
