@@ -7,7 +7,6 @@ export default (state=initialState, action) => {
   switch(type) {
 
     case 'INIT':
-         console.log('@@@Payload is ', payload)
         return payload || initialState;
 
     case 'CREATE_TASK':
@@ -18,6 +17,8 @@ export default (state=initialState, action) => {
 
     case 'DELETE_TASK':
         return state.filter(task => task._id !== payload._id); 
+    
+        return {group: payload} || intialState;
 
     case 'RESET':
         return initialState;

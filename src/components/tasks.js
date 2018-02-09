@@ -14,7 +14,8 @@ class TasksQueue extends React.Component {
         this.state = {
             tasks: this.props.tasks || [],
             groupID:this.props.location.pathname.slice(7, 31),
-            groupName: this.props.location.pathname.slice(32),
+            groupName: this.props.location.pathname.slice(32).split('/')[0],
+            groupAlias: this.props.location.pathname.match(/[^/]*$/gi)[0],
             buttonName: this.props.buttonName || '',
             buttonText: this.props.buttonText || ''
         }
@@ -25,11 +26,10 @@ class TasksQueue extends React.Component {
         let groupID = this.props.location.pathname.slice(7, 31)
         this.props.tasksInitialize(groupID);
         this.getCreator(this.state.groupID);
-        console.log('TASKS: ', this.state)
     }
 
     componentWillReceiveProps(props){
-        if(props) this.setState(this.props);
+        if(props) this.setState(this.props.tasks);
     }
 
     getCreator(groupID) {
@@ -47,8 +47,9 @@ class TasksQueue extends React.Component {
     }
 
     render() {
-      
+        
         let groupName = this.state.groupName || '';
+        let alias = this.state.groupAlias || '';
 
         return (
             <div className = 'queueView'>
@@ -60,6 +61,8 @@ class TasksQueue extends React.Component {
                            title={this.state.buttonText}>
                         </a>
                     </div>
+                    <h4 id='alias' title='Code name to join group'>Alias: {alias}</h4>
+
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
                                 groupID={this.state.groupID}

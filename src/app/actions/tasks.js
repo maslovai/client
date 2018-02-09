@@ -3,13 +3,10 @@ import superagent from'superagent';
 let API = `${__API_URL__}`;
 
 export const tasksInitialize = (groupID) => dispatch => {
-    //  console.log('in tasks init::::',`${API}/task/get`);
+
     superagent
         .get(`${API}/tasks/${groupID}`)
-        .then(res => {
-            dispatch(initAction(res.body));    
-        })
-        .catch(console.error);
+        .then(res => dispatch(initAction(res.body)));
 }
 
 export const taskCreate = payload => dispatch => {
