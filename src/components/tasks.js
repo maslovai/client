@@ -63,7 +63,7 @@ class TasksQueue extends React.Component {
                     </div>
                     <h4 id='alias' title='Code name to join group'>Alias: {alias}</h4>
 
-                    <TaskForm handle = {this.props.taskCreate} 
+                    <TaskForm handle = {this.props.taskCreate}
                                 button = "Save Task"
                                 groupID={this.state.groupID}
                     />
@@ -73,7 +73,7 @@ class TasksQueue extends React.Component {
                     <h2 className='taskHeader' id='listHeader'>Click on a task and write your name when complete:</h2>
                     <ul className = "taskQueue">
                         {
-                            this.props.tasks.map((task, i)=> 
+                            this.props.tasks.map((task, i)=>
                                 <li key = {i} >
                                     <a id='deleteTask' href="javascript:;" title='Delete task'
                                       onClick={()=>this.props.taskDelete(task)}></a>
