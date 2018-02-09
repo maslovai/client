@@ -2,21 +2,33 @@
 @import url('https://fonts.googleapis.com/css?family=Baumans');    
 
 body {
-    background-image: url('/Users/irynamaslova/Projects/401/final-project/client/assets/images/still_life.jpg');
+    // background-image: url('../../../assets/images/rocks.jpg');
+    background-image: url('https://s3-us-west-2.amazonaws.com/paulamookerjee/07fd14bbeea09a60d8bb4a5dd797df1f-dabbing_unicorn_button-r33dcc980cdde405bada4b4105d4d240a_k94rf_324.jpg');
     background-size: cover; 
     background-repeat: 0 0 no-repeat;
+    color: ivory;
     //background: $baseLight;
     
     //color: $baseDark;
-    //font-family:verdana,arial;
+    font-family: Baumans;
     &:after {
         
         @include shadow-bottom-fuzzy;
     }
 }
 
+img {
+ max-width: 100%;
+ min-width: 100%;
+}
+
+h2 {
+    font-family: Baumans;
+}
+
 main {
     padding: 2em;
 }
+
 
 @include headings();

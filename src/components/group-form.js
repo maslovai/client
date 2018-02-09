@@ -33,15 +33,13 @@ class GroupForm extends React.Component {
     this.props.handleJoin(this.state.alias);
     this.setState(initialState)
   }
-
-
     
   render() {
       let nameForm = 'name';
       let aliasForm = 'alias';
 
     return [
-      <form key={nameForm} className="groupAdd" onSubmit={this.handleSubmitName}>			
+      <form autoComplete="off" key={nameForm} className="groupAdd" onSubmit={this.handleSubmitName}>			
       <label className='groupCreateLabel'>
         <span className='grpLabel'>Create a new group!</span>
         <input 
