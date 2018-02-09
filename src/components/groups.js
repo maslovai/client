@@ -16,7 +16,7 @@ class Groups extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if(this.props.user) { this.setState(this.props.user) }
+    if(props) { this.setState(this.props) }
   }
 
   handleAdd(group) {

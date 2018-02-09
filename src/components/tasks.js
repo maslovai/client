@@ -24,7 +24,7 @@ class TasksQueue extends React.Component {
         return (
             <div className = 'queueView'>
                 <div className='inputDiv'>
-                    <h2>Create a task:</h2>
+                    {/* <h2 className='taskHeader'>Create a task:</h2> */}
 
                     <TaskForm handle = {this.props.taskCreate} 
                                 button = "Save Task"
@@ -33,7 +33,7 @@ class TasksQueue extends React.Component {
                 </div>
                 <div className = 'taskQueue'>
 
-                    <h2>Group's tasks. Click on task and write your name to claim</h2>
+                    <h2 className='taskHeader' id='listHeader'>Click on a task and write your name when complete:</h2>
                     <ul className = "taskQueue">
                         {
                             this.props.tasks.map((task, i)=> 

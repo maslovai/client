@@ -1,5 +1,7 @@
 nav {
-    background:darken($baseLight,80%);;
+    //background:darken($baseLight,80%);;
+    background: grey;
+    color: black;
     height:2em;
     line-height:2em;
     width: 100%;
@@ -13,7 +15,7 @@ nav {
             padding:0 1em;
             position:relative;
             min-width: 100px;
-            color: #ccc;
+            color: white;
         }
         
         li:hover {
