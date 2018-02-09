@@ -11,7 +11,6 @@ export const addGroup = (id, group) => (dispatch) => {
       .set('Authorization', `Bearer ${token}`)
       .send({id: id, name: group})
       .then(res => {
-        console.log('res is ', res.body);
           dispatch( updateUser(res.body) );
       })
       .catch(console.error);
@@ -28,11 +27,28 @@ export const joinGroup = (id, alias) => (dispatch) => {
       .set('Authorization', `Bearer ${token}`)
       .send({id: id})
       .then(res => {
-        console.log('res is ', res.body);
           if(!res.body.noGroupExists)
           dispatch( updateUser(res.body) );
       })
       .catch(console.error);
+  }
+}
+
+export const remove = (id, groupID) => (dispatch) => {
+
+  let token = cookie.load('X-BBB-Token');
+
+  if(token) {
+
+    superagent.delete( `${__API_URL__}/group/${groupID}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({id: id})
+    .then(res => {
+      console.log('!!!!DELETE!!! res.body is ', res.body);
+      dispatch(updateUser(res.body))
+    })
+    .catch(console.error);
+
   }
 }
 

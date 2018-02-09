@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
+import * as groupActions from '../app/actions/groups';
 import TaskForm from './task-form';
 import request from 'superagent';
 
@@ -37,7 +38,6 @@ class TasksQueue extends React.Component {
               let creatingUser = res.text;
               let buttonName = this.props.user._id === creatingUser ? 'deleteButton' : 'unsubscribe';
               let buttonText = this.props.user._id === creatingUser ? 'delete group' : 'unsubscribe from group';               
-              console.log('buttonName is ', buttonName)
               this.setState({['buttonName']: buttonName, ['buttonText']: buttonText});              
             });
     }
@@ -45,12 +45,13 @@ class TasksQueue extends React.Component {
     routeToGroups() {
         //this.state.buttonName === 'unsubscribe' ? this.props.unsubscribe : this.props.removeGroup
         //this.props.switchRoute(`/groups`);
+        console.log('this.state.groupID:', this.state.groupID)
+        this.props.remove(this.props.user._id, this.state.groupID);
     }
 
     render() {
       
         let groupName = this.state.groupName || '';
-        // let groupName = this.props.tasks.length ? this.props.tasks[0].groupName : '';
 
         return (
             <div className = 'queueView'>
@@ -103,6 +104,8 @@ const mapDispatchToProps = (dispatch, getState)=>({
     taskUpdate: task => dispatch(tasksActions.taskUpdate(task)),
     taskDelete: task => dispatch(tasksActions.taskDelete(task)),
     tasksInitialize: id => dispatch(tasksActions.tasksInitialize(id)),
+    remove: (userID, groupID) => dispatch(groupActions.remove(userID, groupID)),
+//unsubscribe: (userID, groupID) => dispatch(groupActions.unsubscribe(userID, groupID))
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(TasksQueue);

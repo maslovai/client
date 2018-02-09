@@ -11,7 +11,6 @@ export default (state=initialState, action) => {
         return payload || initialState;
 
     case 'CREATE_TASK':
-        console.log('PAY - fucking - LOAD is ', payload)
         return [...state, payload];
 
     case 'UPDATE_TASK':
