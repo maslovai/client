@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import * as tasksActions from '../app/actions/tasks';
 import TaskForm from './task-form';
 
-
-
-
 class TasksQueue extends React.Component {
 
     constructor(props) {
@@ -26,7 +23,7 @@ class TasksQueue extends React.Component {
                 <div className='inputDiv'>
                     {/* <h2 className='taskHeader'>Create a task:</h2> */}
 
-                    <TaskForm handle = {this.props.taskCreate} 
+                    <TaskForm handle = {this.props.taskCreate}
                                 button = "Save Task"
                                 groupID={this.state.groupID}
                     />
@@ -36,10 +33,10 @@ class TasksQueue extends React.Component {
                     <h2 className='taskHeader' id='listHeader'>Click on a task and write your name when complete:</h2>
                     <ul className = "taskQueue">
                         {
-                            this.props.tasks.map((task, i)=> 
+                            this.props.tasks.map((task, i)=>
                                 <li key = {i} >
                                     <span onClick={()=>this.props.taskDelete(task)}>x</span>
-                                    <TaskForm handle = {this.props.taskUpdate} 
+                                    <TaskForm handle = {this.props.taskUpdate}
                                         name={task.name}
                                         completed={task.completed}
                                         _id={task._id}
