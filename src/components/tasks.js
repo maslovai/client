@@ -4,6 +4,7 @@ import * as tasksActions from '../app/actions/tasks';
 import * as groupActions from '../app/actions/groups';
 import TaskForm from './task-form';
 import request from 'superagent';
+import Stats from './stats'
 
 let API = `${__API_URL__}`;
 
@@ -90,7 +91,9 @@ class TasksQueue extends React.Component {
                         }
                     </ul>
                 </div>
-
+                <div>
+                    <Stats groupId={this.state.groupName}/>
+                </div>         
             </div>
         )
     }

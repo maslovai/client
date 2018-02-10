@@ -14,7 +14,7 @@ class Arc extends Component {
 
     componentWillMount() {
         this.updateD3(this.props);
-    }1
+    }
 
     componentWillReceiveProps(newProps) {
         this.updateD3(newProps);

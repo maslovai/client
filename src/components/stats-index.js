@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 
 import { LabeledArc } from './arc.js';
 
+import  d3 from 'd3';
+
 class Piechart extends Component {
     constructor(props) {
       super(props);
@@ -27,7 +29,7 @@ class Piechart extends Component {
 
     render() {
       let pie = this.pie(this.props.data),
-        translate = `translate(${this.props.x}, ${this.props.y})`
+      translate = `translate(${this.props.x}, ${this.props.y})`
 
       return (
         <g transform = {translate}>

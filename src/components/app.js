@@ -10,6 +10,7 @@ import Navbar from './navbar'
 import Login from './login'
 import Groups from './groups'
 import TasksQueue from './tasks'
+// import Stats from './stats'
 
 
 import * as authActions from '../app/actions/auth';
@@ -49,6 +50,7 @@ class App extends React.Component {
           <Switch location={{pathname:this.props.route}}>
             <Route path='/queue' component={TasksQueue}/>
             <Route exact path='/login' component={Login}/>
+            {/* <Route exact path='/stats' component={Stats}/> */}
             <Route exact path='/groups' component={() => 
               <Groups toggleView={this.toggleView} switchRoute={this.props.switchRoute}/>}/>
           </Switch>
