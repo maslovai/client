@@ -13,7 +13,7 @@ class TaskForm extends React.Component{
      groupID:this.props.groupID || '',
      _id:this.props._id || '',
      completedBy:this.props.userID || '',
-     initials:this.props.userName
+     userName:this.props.userName
    }
 
    this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,11 +41,7 @@ class TaskForm extends React.Component{
    let task = Object.assign(this.state, {completed:!this.state.completed, completedBy:this.props.userID})
    this.setState({task}, () => {
       this.props.handle(this.state);
-   })
-   let input = document.createElement('input');
-   input.value = this.state.initials;
-   input.id = this.state._id;
-   
+   })   
  }
  
  render(){
@@ -76,7 +72,7 @@ class TaskForm extends React.Component{
                   renderIf(this.state.completed,
                     <input
                       type = "text"
-                      defaultValue = {this.state.initials}
+                      defaultValue = {this.state.userName}
                       />,
                       null
                     )
