@@ -8,27 +8,25 @@ class Stats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            groupID:this.props.groupID
-        }
     }
 
     componentWillMount(){
-        this.props.statsInitialize('5a7e45897289e92ba0a216a4');
+        // console.log('component props groupID: ', this.props.groupID)
+        this.props.statsInitialize(this.props.groupID);
     }
 
     render(){
-        console.log('component groupID: ', this.state.groupID)
+       console.log("in stats:  ", this.props.stats)
         return(
             <div>
                 <h2>Here is your stats:</h2>
-                {/* <Piechart x={100} y={100} outerRadius={100} innerRadius={50}
+                <Piechart x={100} y={100} outerRadius={100} innerRadius={50}
                 //we can change the size of our pie chart by messing with the above variables. 
-                    data= {this.state.data}
+                    data= {this.props.stats}
                     //get from stats route and plug in here
                     //piechart expects an array of objects with the keys 'value' and 'label'  
                     //colors for the pie slices are selected automatically and supports up to 10 unique colors.
-                />  */}
+                /> 
             </div> 
         )
     }

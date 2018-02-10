@@ -52,6 +52,8 @@ class TasksQueue extends React.Component {
         let groupName = this.state.groupName || '';
         let alias = this.state.groupAlias || '';
 
+        console.log("GROUP ID::::::", this.state.groupID);
+
         return (
             <div className = 'queueView'>
                 <div className='inputDiv'>
@@ -84,7 +86,7 @@ class TasksQueue extends React.Component {
                                         _id={task._id}
                                         groupID={this.state.groupID}
                                         userID = {this.props.user._id}
-                                        userName = {this.props.user.username.split('.').slice(1)}
+                                        userName = {this.props.user.firstName}
                                     />
                                 </li>
                             )
@@ -92,7 +94,7 @@ class TasksQueue extends React.Component {
                     </ul>
                 </div>
                 <div>
-                    <Stats groupId={this.state.groupName}/>
+                    <Stats groupID={this.state.groupID}/>
                 </div>         
             </div>
         )
