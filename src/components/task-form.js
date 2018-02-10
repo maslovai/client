@@ -45,16 +45,6 @@ class TaskForm extends React.Component{
    let input = document.createElement('input');
    input.value = this.state.initials;
    input.id = this.state._id;
-
-   if (this.state.completed){
-      let input = document.createElement('input');
-      input.value = this.state.initials;
-      input.id = this.state._id
-      document.getElementById(`checkedTest${this.state._id}`).appendChild(input);
-   }
-   else{
-      document.getElementById(input.id).remove();
-   }
    
  }
  
@@ -82,6 +72,16 @@ class TaskForm extends React.Component{
                     onChange= {this.handleOnChange} 
                     checked = {this.state.completed}  
               />
+              {
+                  renderIf(this.state.completed,
+                    <input
+                      type = "text"
+                      defaultValue = {this.state.initials}
+                      />,
+                      null
+                    )
+              }
+            
             </div>
            )
          }

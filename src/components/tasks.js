@@ -4,7 +4,7 @@ import * as tasksActions from '../app/actions/tasks';
 import * as groupActions from '../app/actions/groups';
 import TaskForm from './task-form';
 import request from 'superagent';
-import Stats from './stats'
+// import Stats from './stats'
 
 let API = `${__API_URL__}`;
 
@@ -29,7 +29,7 @@ class TasksQueue extends React.Component {
         this.getCreator(this.state.groupID);
     }
 
-    componentWillReceiveProps(props){
+    componentWillReceiveProps(props, nextProps){
         if(props) this.setState(this.props.tasks);
     }
 
@@ -92,10 +92,7 @@ class TasksQueue extends React.Component {
                             )
                         }
                     </ul>
-                </div>
-                <div>
-                    <Stats groupID={this.state.groupID}/>
-                </div>         
+                </div>        
             </div>
         )
     }
